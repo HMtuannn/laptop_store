@@ -1,0 +1,52 @@
+<?php 
+
+    session_start();
+
+    $config = require_once dirname(__DIR__) . '/config/config.php';
+
+    require_once dirname(__DIR__) . '/db/base.php';
+    require_once dirname(__DIR__) . '/db/wishlist.php';
+
+    $db = new Database();   
+    $wishlist = new Wishlist();
+?>
+
+<?php
+    $page = isset($_GET['page']) ? (int)$_GET['page'] : 1;
+    $paginationData = $wishlist->getProductsFromWishlistWithPagination($_SESSION['user']['id'],$config['DEFAULT_PAGE_SIZE'], $page);
+
+    $products = $paginationData['data'];
+    $totalPages = $paginationData['last_page'];
+    $currentPage = $paginationData['current_page'];
+?>
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sản phẩm đã lưu</title>
+    <link rel="icon" type="image/x-icon" href="<?php echo $config['BASE_URL'] .'/assets/images/iassets/logo.png'; ?>">
+    <?php require_once "lib.php"; ?>
+</head>
+
+<body>
+
+    <div class="home_page">
+
+        <?php require_once "header.php"; ?>
+
+        <div class="content">
+
+            <?php require_once 'page_wishlist.php'; ?>
+
+            <br>
+            <?php require_once 'footer.php'; ?>
+
+        </div>
+
+
+</body>
+
+</html>
