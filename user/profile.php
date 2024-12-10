@@ -33,6 +33,7 @@ $isAdmin = !empty(array_filter($_SESSION['user']['role'], function ($role) {
     <title>Hồ sơ người dùng</title>
     <link rel="stylesheet" href="assets/css/index.css">
     <link rel="stylesheet" href="assets/css/profile.css">
+
     <style>
     /* CSS cho popup */
     .popup {
@@ -112,6 +113,9 @@ $isAdmin = !empty(array_filter($_SESSION['user']['role'], function ($role) {
     a {
         cursor: pointer;
     }
+    a:active {
+    transform: translateY(2px); /* Hiệu ứng khi nhấn */
+}
 
 
     /* Modal Styles */
@@ -137,14 +141,17 @@ $isAdmin = !empty(array_filter($_SESSION['user']['role'], function ($role) {
         text-align: center;
         position: relative;
     }
+    
     </style>
 </head>
 
 <body>
-    <a href="<?php echo $config['BASE_URL']; ?>">Quay lại trang chủ</a>
+    
     <div class="container">
+    <div>
+    <a href="<?php echo $config['BASE_URL']; ?>">Quay lại trang chủ</a> </div>
         <div class="profile-header">
-            <img src="" alt="Avatar">
+           
             <h1>Xin chào: <?php echo $user['username'] ?? 'Người dùng'; ?></h1>
             <!-- <p>Email: <?php echo $user['email'] ?? 'Chưa cập nhật'; ?></p> -->
             <!-- <p>Email: <?php echo $user['phone'] ?? 'Chưa cập nhật'; ?></p> -->
@@ -179,8 +186,9 @@ $isAdmin = !empty(array_filter($_SESSION['user']['role'], function ($role) {
                     </tr>
                     <tr>
                         <th>Email</th>
-                        <td><input placeholder="Email" required name="email"
-                                value=" <?php echo $user['email'] ?? ''; ?>">
+                        <td><input pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,}$"
+                                title="Vui lòng nhập email hợp lệ (ví dụ: example@domain.com)" placeholder="Email"
+                                required name="email" value=" <?php echo $user['email'] ?? ''; ?>">
                         </td>
                     </tr>
                 </table>

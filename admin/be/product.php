@@ -28,7 +28,11 @@ if ($_POST && isset($_POST['submit'])) {
     $percent = isset($_POST['discountPercent']) ? $_POST['discountPercent'] : 0;
     $newPrice = isset($_POST['newPrice']) ? $_POST['newPrice'] : 0;
 
-    $FILE = $_FILES['image'];
+    $features = isset($_POST['features']) ? $_POST['features'] : []; 
+
+    $specialTechnologies = isset($_POST['specialTechnologies']) ? $_POST['specialTechnologies'] : []; 
+
+    $image = $_FILES['image'];
     $fileName = $_FILES['image']['name'];
     $fileTmp = $_FILES['image']['tmp_name'];
 
@@ -36,6 +40,8 @@ if ($_POST && isset($_POST['submit'])) {
     $newFileName = uniqid('product_', true) . '.' . $fileExt;
 
     $file_path = $targePath . $newFileName;
+
+    $images = $_FILES['images'] ?? null;
 
     $data = [
         'name' => $name,
@@ -58,9 +64,36 @@ if ($_POST && isset($_POST['submit'])) {
         'sold' => 0
     ];
 
-    if ($db->insert('t_product', $data)) {
+    $insertedId = $db->insertAndGetId('t_product', $data);
+    if ($insertedId) {
 
         move_uploaded_file($fileTmp, $file_path);
+
+        if ($images) {
+            foreach ($images['tmp_name'] as $index => $tmpName) {
+                if ($images['error'][$index] === UPLOAD_ERR_OK) {
+                    $fileExtension = pathinfo($images['name'][$index], PATHINFO_EXTENSION);
+                    $newFileNames =  'ProductSubImg_'. uniqid('image_', true) . '.' . $fileExtension; 
+                    $filesPath = $targePath . $newFileNames;
+
+                    $db->insert('t_product_image', ['image' => $newFileNames , 'productId' => $insertedId]);
+                    move_uploaded_file($tmpName, $filesPath);
+                }
+            }
+        }
+
+        if($features){
+            foreach ($features as $feature) {
+                $db->insert('t_product_feature', ['productId' => $insertedId, 'featureId' => $feature]);
+            }
+        }
+
+        if($specialTechnologies){
+            foreach ($specialTechnologies as $specialTech) {
+                $db->insert('t_product_special_tech', ['productId' => $insertedId, 'specialtechId' => $specialTech]);
+            }
+        }
+
         header("Location: ../index.php?page=add_product&type=success&message=Thêm thành công");
         exit();
     } else {

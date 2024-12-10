@@ -1,6 +1,6 @@
 <?php
 
-$products = $db->findAll('t_product', ['isDiscount' => true], 'id', 'DESC',8);
+$products = $db->findAll('t_product', ['isDiscount' => true], 'id', 'DESC', $config['INDEX_PRODUCT_DISCOUNT_NUMBER']);
 
 ?>
 

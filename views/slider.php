@@ -4,20 +4,23 @@
         <div class="slider-container">
             <div class="slider">
                 <div class="slider-item">
-                    <img src="https://www.funkykit.com/wp-content/uploads/2020/06/ACER-predator-gaming-laptop-banner.jpg"
-                        alt="Slide 1">
+                    <img src="https://shopdunk.com/images/uploaded/banner/banner%202024/Thang_12/banner%20Macbook%20pro%20m4-T12_Danh%20m%E1%BB%A5c.png" alt="Slide 1">
                 </div>
                 <div class="slider-item">
-                    <img src="https://i.pinimg.com/originals/ef/80/83/ef8083bfe79088dc00bd8eca9c821cd5.jpg"
-                        alt="Slide 2">
+                    <img src="https://cdnv2.tgdd.vn/mwg-static/tgdd/Banner/76/fb/76fbc67548f64e5857bc526b2649f8a9.png" alt="Slide 2">
                 </div>
                 <div class="slider-item">
-                    <img src="https://i.insider.com/658323551c5c7b8c9a0a6dc8?width=600&format=jpeg&auto=webp"
-                        alt="Slide 3">
+                    <img src="https://shopdunk.com/images/uploaded/banner/banner%202024/Thang_12/banner%20Mcsr-T12_PC.png" alt="Slide 3">
+                </div>
+                <div class="slider-item">
+                    <img src="https://promotions.lenovo.com/uploads/banner/a363371f63ebc36c995d03fbaa7b9199.jpg" alt="Slide 4">
+                </div>
+                <div class="slider-item">
+                    <img src="https://static-ecapac.acer.com/media/wysiwyg/Laptop_Gaming_-_1640x430_6.png" alt="Slide 5">
                 </div>
             </div>
         </div>
-        <!-- <div class="program-container">
+        <!-- <div class="program-container ">
 
 </div> -->
     </div>

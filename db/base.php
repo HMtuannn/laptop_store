@@ -2,9 +2,9 @@
 
 class Database {
     private $host = 'localhost';
-    private $db_name = 'laptop'; 
+    private $db_name = 'db_laptop'; 
     private $username = 'root';     
-    private $password = '';        
+    private $password = '';          
     protected $conn;
 
     public function __construct() {
@@ -252,7 +252,7 @@ class Database {
             'current_page' => $page,
             'last_page' => ceil($total / $limit),
         ];
-        }
+    }
 
 
 

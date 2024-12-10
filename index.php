@@ -4,13 +4,24 @@ session_start();
 
 require_once 'db/base.php';
 
+require_once 'db/product.php';
+
 $config = require 'config/config.php';
 
 $db = new Database();
 
+$productDb = new Product();
 
+$types = $db->findAll('t_type');
+
+$brands = $db->findAll('t_brand');
+
+$features = $db->findAll('t_features');
+
+$specialTechs = $db->findAll('t_special_tech');
 
 ?>
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -31,10 +42,19 @@ $db = new Database();
         <div class="content">
             <?php require_once "views/slider.php"; ?>
 
+            <?php require_once 'views/filter_search.php'; ?>
+
             <?php require_once 'views/list_brand.php'; ?>
 
             <?php require_once 'views/discounting_product.php'; ?>
 
+            <?php 
+                if ($_SERVER["REQUEST_METHOD"] === "POST") {
+                    require_once 'views/filtered.php';
+                }else{
+                    require_once 'views/list_product.php';
+                }
+            ?>
             <!-- <div class="filter">
 
                 <div class="row">
@@ -70,32 +90,14 @@ $db = new Database();
 
             </div> -->
 
-            <?php require_once 'views/list_product.php'; ?>
-            <?php require_once 'views/footer.php'; ?>
 
         </div>
 
-        <script type="text/javascript" src="https://code.jquery.com/jquery-1.11.0.min.js"></script>
-        <script type="text/javascript" src="https://code.jquery.com/jquery-migrate-1.2.1.min.js"></script>
-        <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.min.js">
-        </script>
+        <?php require_once 'views/footer.php'; ?>
+    </div>
 
-        <script>
-        $(document).ready(function() {
-            $('.slider').slick({
-                dots: true,
-                infinite: true,
-                speed: 500,
-                // fade: true,
-                cssEase: 'linear',
-                delay: 3000,
-                autoplay: true,
-                arrows: true,
-                prevArrow: "<button type='button' class='slick-prev pull-left'><i class='fa fa-angle-left' aria-hidden='true'></i></button>",
-                nextArrow: "<button type='button' class='slick-next pull-right'><i class='fa fa-angle-right' aria-hidden='true'></i></button>"
-            });
-        });
-        </script>
+    <?php require_once 'views/scripts.php'; ?>
+
 </body>
 
 </html>

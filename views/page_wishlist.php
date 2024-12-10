@@ -18,7 +18,7 @@
         <div class="box">
             <div class="image">
                 <img src="https://cdn.tgdd.vn/Products/Images/44/311178/asus-vivobook-go-15-e1504fa-r5-nj776w-thumb-600x600.jpg"
-                    alt="">
+                    alt=""> 
             </div>
             <div class="gift">
                 <span>

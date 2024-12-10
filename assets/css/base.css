@@ -2,6 +2,7 @@
 	margin: 0;
 	padding: 0;
 	box-sizing: border-box;
+  	font-family: 'Arial', sans-serif; 
 }
 
 .row{
@@ -48,4 +49,9 @@ h3.title-block{
 
 .btn:hover{
 	scale: 1.05;
+}
+pre{
+	max-width: 100%;
+	white-space: pre-wrap;
+	word-wrap: break-word;
 }

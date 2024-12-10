@@ -5,7 +5,7 @@ $db = new Database();
 
 $products = $db->findAll('t_product', ['isDiscount' => true], 'id', 'DESC');
 
-$productImagePath = '/TMPWEB/assets/images/products/';
+$config=require_once dirname(dirname(__DIR__)) . '/config/config.php';
 ?>
 
 <h3>Danh Sách Sản Phẩm Giảm Giá</h3>
@@ -32,7 +32,7 @@ $productImagePath = '/TMPWEB/assets/images/products/';
                 <td style="width: 30px;text-align:center"><?php echo $i; ?></td>
                 <td style=" width: 50px;">
                     <img style="width: 50px; height: 30px; margin: auto;"
-                        src="<?php echo ($productImagePath . $product['image']); ?>"
+                        src="<?php echo ($config["PRODUCT_IMAGE"] . $product['image']); ?>"
                         alt="<?php echo ($product['name']); ?>">
                 </td>
                 <td><?php echo ($product['name']); ?></td>
